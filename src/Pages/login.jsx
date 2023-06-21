@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import '../App.css';
+import css from '../styles/index.css';
 
 import { Link, useNavigate } from "react-router-dom";
 
@@ -35,7 +35,7 @@ export default function Login() {
 
     return (
         <div>
-            <section className="bsign" style={{ backgroundImage: `url(${bk})` }}>
+            <section className="bsign" style={{ backgroundImage: `url(${css.bk})` }}>
                 <div className="d-flex flex-column">
                     <div className="d-flex flex-column justify-content-center align-items-center full">
                         <div className="focus-in-expand">
@@ -64,7 +64,7 @@ export default function Login() {
                         </div>
                     </div>
                 </div>
-                <Link to="/"><div className="bheader" style={{ backgroundImage: `url(${header})` }}>
+                <Link to="/"><div className="bheader" style={{ backgroundImage: `url(${css.header})` }}>
                 </div></Link>
             </section>
         </div>

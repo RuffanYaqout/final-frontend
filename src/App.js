@@ -1,59 +1,37 @@
-import { Routes, Route } from "react-router-dom";
-import '../App.css';
+import React from "react";
+import { Routes, Route, BrowserRouter as Router, useNavigate } from "react-router-dom";
 import Home from './Pages/home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap";
 import Registerform from './Pages/register';
 import Login from './Pages/login';
-import { ClerkProvider, SignIn, SignedIn } from "@clerk/clerk-react";
-if (!process.env.REACT_APP_CLERK_PUBLISHABLE_KEY) {
-  throw new Error("Missing Publishable Key")
-}const clerkPubKey = process.env.REACT_APP_CLERK_PUBLISHABLE_KEY;
+
+import { ClerkProvider, SignIn } from "@clerk/clerk-react";
 
 function App(props) {
   return (
-    <ClerkProvider frontendApi={clerkConfig}>
-      <Routes>
-        <Route path="/" element={<Home db={props.db} auth={props.auth} />} />
-        <Route path="/register" element={<Registerform db={props.db} auth={props.auth} />} />
-        <Route path="/login" element={<Login db={props.db} auth={props.auth} />} />
-        <Route
-          path="/dashboard"
-          element={
-            <SignedIn>
-              <Dashboard db={props.db} auth={props.auth} />
-            </SignedIn>
-          }
-        />
-        <Route
-          path="/profile"
-          element={
-            <SignedIn>
-              <Profile db={props.db} auth={props.auth} />
-            </SignedIn>
-          }
-        />
-        <Route
-          path="/signin"
-          element={
-            <SignedOut>
-              <SignIn />
-            </SignedOut>
-          }
-        />
-        <Route
-          path="/signup"
-          element={
-            <SignedOut>
-              <SignUp />
-            </SignedOut>
-          }
-        />
-      </Routes>
-    </ClerkProvider>
+      <Router>
+        <ClerkProviderWithNavigate >
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<SignIn/>}/>
+        </Routes>
+        </ClerkProviderWithNavigate>
+       
+      </Router>
   );
 }
 
-
+function ClerkProviderWithNavigate({ children }) {
+  const navigate = useNavigate();
+  return (
+    <ClerkProvider
+    publishableKey="pk_test_c2V0dGxlZC1pbXBhbGEtMS5jbGVyay5hY2NvdW50cy5kZXYk"
+    navigate={navigate}
+    >
+      {children}
+    </ClerkProvider>
+  );
+}
 
 export default App;

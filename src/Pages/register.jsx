@@ -9,7 +9,7 @@ import Footer from '../components/foot';
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 import { firestore } from '../firebase';
-import '../App.css';
+import '../styles/index.css';
 import { Helmet } from 'react-helmet';
 
 
