@@ -11,9 +11,10 @@ import Tabs from 'react-bootstrap/Tabs';
 import { firestore } from '../firebase';
 import '../styles/index.css';
 import { Helmet } from 'react-helmet';
+import { SignIn, SignUp } from '@clerk/clerk-react';
 
 
-function Registration(props) {
+function Signup(props) {
   const [error, setError] = useState(null);
 
   const auth = getAuth();
@@ -51,43 +52,22 @@ function Registration(props) {
   <meta name="description" content="HELP | Health emergency website book ambulance for emergency and to Find the 
 nearest hospital to your location: its address, 
 phone number, and ratings." />
-</Helmet>    <div>
+</Helmet>  
+  <div>
 
       <Navi />
         
-      <form >
 
-        <div id='regform'>
-          <Tabs defaultActiveKey="signup" id="justify-tab-example" className="mb-3" justify>
-            <Tab eventKey="signup" title="Sign In">
-              <h6 id="guest" ><a href='http://localhost:3000/'id="guest">Sign as a guest</a></h6>
+          <div className='login-clerk'>
+        <SignUp signInUrl='/signin' />
 
-              <label htmlFor="user">Username</label>
-              <input type="text" id="username" value={username} onChange={(event) => setUsername(event.target.value)} />
-              <br />
-              <br />
-
-            <br />
-
-
-              <label htmlFor="password">Password</label>
-              <input type="password" id="password" value={password} onChange={(event) => setPassword(event.target.value)} />
-              <br />              <br />
-
-              <div id="buttonR">
-              <button type="submit" class="buttonR"> Submit</button>
-              </div>
-            </Tab>
-
+            </div>  
 
             
-          </Tabs>
-          </div>
-        </form>
       </div>
       <Footer />
       
     </div>
   );
 }
-export default Registration;
+export default Signup;

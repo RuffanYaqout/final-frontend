@@ -8,10 +8,21 @@ import logo from '../images/logo.png';
 //importing icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPhone , faSearch, faMicrophone} from '@fortawesome/free-solid-svg-icons';
+import { SignedOut, useUser } from '@clerk/clerk-react';
+import { useNavigate } from 'react-router-dom';
 
+import { UserButton } from "@clerk/clerk-react";
 
 function Navi() {
+const {user,isLoaded,isSignedIn}=useUser()
+const navigate = useNavigate();
 
+console.log(user)
+
+const signOut = ()=>{
+  signOut()
+  navigate('/')
+}
   return (
   <div>
       {/*Above Nav Bar */}
@@ -21,7 +32,13 @@ function Navi() {
           <span className="hotline-text">1623</span>
         </div>
         <div> 
-          <a  id="register"href="./register">Sign In</a>
+          {
+            !isSignedIn && <a  id="register"href="./signin">Sign In</a>
+          }
+          {
+             user && isLoaded && <UserButton afterSignOutUrl='/' />
+          }
+          
         </div>
       </section>
 

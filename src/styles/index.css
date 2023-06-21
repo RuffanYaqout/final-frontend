@@ -175,3 +175,8 @@ width: 50%;
 .username{
   margin-top: 40px;
 }
+.login-clerk{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

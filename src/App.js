@@ -3,10 +3,10 @@ import { Routes, Route, BrowserRouter as Router, useNavigate } from "react-route
 import Home from './Pages/home';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "bootstrap/dist/js/bootstrap";
-import Registerform from './Pages/register';
-import Login from './Pages/login';
 
-import { ClerkProvider, SignIn } from "@clerk/clerk-react";
+import { ClerkProvider, SignIn, SignUp } from "@clerk/clerk-react";
+import Registration from "./Pages/signin";
+import Signup from "./Pages/signup";
 
 function App(props) {
   return (
@@ -14,10 +14,10 @@ function App(props) {
         <ClerkProviderWithNavigate >
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/signin" element={<SignIn/>}/>
+          <Route path="/signin" element={<Registration/>}/>
+          <Route path='/signup' element={<Signup/>}/>
         </Routes>
         </ClerkProviderWithNavigate>
-       
       </Router>
   );
 }
