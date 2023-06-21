@@ -13,6 +13,7 @@ const router = createBrowserRouter([
     path: "/register",
     element: <Registration/>,
   },
+  
 ]);
 ReactDOM.render(
   <React.StrictMode>
